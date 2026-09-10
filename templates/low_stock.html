@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Low Stock Medicines</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+.page-container{max-width:1200px;margin:35px auto;padding:0 25px}
+.stock-card{background:white;border-radius:18px;padding:35px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.page-title{text-align:center;font-size:34px;color:#1e293b;margin-bottom:10px}
+.page-subtitle{text-align:center;color:#64748b;margin-bottom:30px}
+.warning-box{background:#fff6df;border:1px solid #f8df9e;padding:15px;border-radius:10px;text-align:center;color:#92400e;margin-bottom:25px;font-weight:600}
+.table-wrapper{overflow-x:auto}
+.stock-table{width:100%;border-collapse:collapse;min-width:700px}
+.stock-table th{background:#f79000;color:white;padding:15px;text-align:center}
+.stock-table td{padding:14px;text-align:center;border-bottom:1px solid #e2e8f0}
+.stock-table tr:hover{background:#fffaf0}
+.low-quantity{color:#dc2626;font-size:18px;font-weight:bold}
+.medicine-name{font-weight:bold}
+.empty-message{text-align:center;padding:35px;color:#15803d;font-size:18px}
+.bottom-actions{display:flex;justify-content:center;gap:15px;margin-top:30px;flex-wrap:wrap}
+.button{display:inline-block;padding:12px 24px;border-radius:8px;color:white;text-decoration:none;font-weight:bold}
+.inventory-button{background:#2684ed}
+.inventory-button:hover{background:#1769d1;color:white}
+.dashboard-button{background:#64748b}
+.dashboard-button:hover{background:#475569;color:white}
+</style>
+</head>
+<body>
+
+<header class="header">
+<div class="header-content">
+<div class="logo-icon">⚠️</div>
+<div>
+<h1>Pharmacy Inventory System</h1>
+<p>Manage medicines, stock and expiry dates</p>
+</div>
+</div>
+</header>
+
+<main class="page-container">
+<div class="stock-card">
+
+<h2 class="page-title">Low Stock Medicines</h2>
+<p class="page-subtitle">Medicines with quantity below 10 units.</p>
+
+<div class="warning-box">⚠️ These medicines may need to be restocked soon.</div>
+
+<div class="table-wrapper">
+<table class="stock-table">
+<thead>
+<tr>
+<th>ID</th>
+<th>Medicine Name</th>
+<th>Category</th>
+<th>Manufacturer</th>
+<th>Quantity</th>
+<th>Expiry Date</th>
+</tr>
+</thead>
+<tbody>
+
+{% for medicine in medicines %}
+<tr>
+<td>{{ medicine["id"] }}</td>
+<td class="medicine-name">{{ medicine["name"] }}</td>
+<td>{{ medicine["category"] }}</td>
+<td>{{ medicine["manufacturer"] }}</td>
+<td class="low-quantity">{{ medicine["quantity"] }}</td>
+<td>{{ medicine["expiry_date"] }}</td>
+</tr>
+
+{% else %}
+<tr>
+<td colspan="6" class="empty-message">✅ No medicines are currently low in stock.</td>
+</tr>
+{% endfor %}
+
+</tbody>
+</table>
+</div>
+
+<div class="bottom-actions">
+<a href="/medicines" class="button inventory-button">📦 View Inventory</a>
+<a href="/" class="button dashboard-button">← Dashboard</a>
+</div>
+
+</div>
+</main>
+
+<footer class="footer">
+<p>© 2026 Pharmacy Inventory System | Keep Medicines Safe</p>
+</footer>
+
+</body>
+</html>

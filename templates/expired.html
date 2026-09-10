@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expired Medicines</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+.page-container{max-width:1200px;margin:35px auto;padding:0 25px}
+.expired-card{background:white;border-radius:18px;padding:35px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.page-title{text-align:center;font-size:34px;color:#1e293b;margin-bottom:10px}
+.page-subtitle{text-align:center;color:#64748b;margin-bottom:30px}
+.danger-box{background:#ffe9eb;border:1px solid #f7c7cc;padding:15px;border-radius:10px;text-align:center;color:#991b1b;margin-bottom:25px;font-weight:600}
+.table-wrapper{overflow-x:auto}
+.expired-table{width:100%;border-collapse:collapse;min-width:700px}
+.expired-table th{background:#dc3545;color:white;padding:15px;text-align:center}
+.expired-table td{padding:14px;text-align:center;border-bottom:1px solid #e2e8f0}
+.expired-table tr:hover{background:#fff5f5}
+.medicine-name{font-weight:bold}
+.expired-date{color:#dc2626;font-weight:bold}
+.expired-status{display:inline-block;padding:6px 12px;background:#ffe9eb;color:#dc2626;border-radius:20px;font-size:13px;font-weight:bold}
+.empty-message{text-align:center;padding:35px;color:#15803d;font-size:18px}
+.bottom-actions{display:flex;justify-content:center;gap:15px;margin-top:30px;flex-wrap:wrap}
+.button{display:inline-block;padding:12px 24px;border-radius:8px;color:white;text-decoration:none;font-weight:bold}
+.inventory-button{background:#2684ed}
+.inventory-button:hover{background:#1769d1;color:white}
+.dashboard-button{background:#64748b}
+.dashboard-button:hover{background:#475569;color:white}
+</style>
+</head>
+<body>
+
+<header class="header">
+<div class="header-content">
+<div class="logo-icon">⚠️</div>
+<div>
+<h1>Pharmacy Inventory System</h1>
+<p>Manage medicines, stock and expiry dates</p>
+</div>
+</div>
+</header>
+
+<main class="page-container">
+<div class="expired-card">
+
+<h2 class="page-title">Expired Medicines</h2>
+<p class="page-subtitle">Medicines whose expiry date has already passed.</p>
+
+<div class="danger-box">⚠️ Do not dispense expired medicines.</div>
+
+<div class="table-wrapper">
+<table class="expired-table">
+<thead>
+<tr>
+<th>ID</th>
+<th>Medicine Name</th>
+<th>Category</th>
+<th>Manufacturer</th>
+<th>Quantity</th>
+<th>Expiry Date</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+
+{% for medicine in medicines %}
+<tr>
+<td>{{ medicine["id"] }}</td>
+<td class="medicine-name">{{ medicine["name"] }}</td>
+<td>{{ medicine["category"] }}</td>
+<td>{{ medicine["manufacturer"] }}</td>
+<td>{{ medicine["quantity"] }}</td>
+<td class="expired-date">{{ medicine["expiry_date"] }}</td>
+<td><span class="expired-status">EXPIRED</span></td>
+</tr>
+
+{% else %}
+<tr>
+<td colspan="7" class="empty-message">✅ No expired medicines found.</td>
+</tr>
+{% endfor %}
+
+</tbody>
+</table>
+</div>
+
+<div class="bottom-actions">
+<a href="/medicines" class="button inventory-button">📦 View Inventory</a>
+<a href="/" class="button dashboard-button">← Dashboard</a>
+</div>
+
+</div>
+</main>
+
+<footer class="footer">
+<p>© 2026 Pharmacy Inventory System | Keep Medicines Safe</p>
+</footer>
+
+</body>
+</html>

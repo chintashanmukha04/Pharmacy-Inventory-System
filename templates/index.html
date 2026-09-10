@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pharmacy Inventory System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header class="header">
+
+        <div class="header-content">
+
+            <div class="logo-icon">
+                💊
+            </div>
+
+            <div>
+
+                <h1>Pharmacy Inventory System</h1>
+
+                <p>
+                    Manage medicines, stock and expiry dates
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- Main Content -->
+
+    <main class="main-container">
+
+        <section class="dashboard">
+
+            <h2>Inventory Dashboard</h2>
+
+
+            <!-- Statistics -->
+
+            <div class="stats-container">
+
+
+                <!-- Total Medicines -->
+
+                <div class="stat-card total-card">
+
+                    <div class="stat-icon">
+                        💊
+                    </div>
+
+                    <div class="stat-info">
+
+                        <h3>Total Medicines</h3>
+
+                        <span>
+                            {{ total_medicines }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Low Stock -->
+
+                <div class="stat-card low-card">
+
+                    <div class="stat-icon">
+                        ⚠️
+                    </div>
+
+                    <div class="stat-info">
+
+                        <h3>Low Stock</h3>
+
+                        <span>
+                            {{ low_stock }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Expired -->
+
+                <div class="stat-card expired-card">
+
+                    <div class="stat-icon">
+                        📅
+                    </div>
+
+                    <div class="stat-info">
+
+                        <h3>Expired Medicines</h3>
+
+                        <span>
+                            {{ expired }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Divider -->
+
+            <div class="divider"></div>
+
+
+            <!-- Action Buttons -->
+
+            <div class="actions-container">
+
+
+                <!-- Add Medicine -->
+
+                <a href="/add" class="action-button add-button">
+
+                    <span class="button-icon">
+                        ＋
+                    </span>
+
+                    <span>
+                        Add Medicine
+                    </span>
+
+                </a>
+
+
+                <!-- View Inventory -->
+
+                <a href="/medicines" class="action-button inventory-button">
+
+                    <span class="button-icon">
+                        ☷
+                    </span>
+
+                    <span>
+                        View Inventory
+                    </span>
+
+                </a>
+
+
+                <!-- Low Stock -->
+
+                <a href="/low-stock" class="action-button low-stock-button">
+
+                    <span class="button-icon">
+                        ▮▮▮
+                    </span>
+
+                    <span>
+                        Low Stock Medicines
+                    </span>
+
+                </a>
+
+
+                <!-- Expired -->
+
+                <a href="/expired" class="action-button expired-button">
+
+                    <span class="button-icon">
+                        📅
+                    </span>
+
+                    <span>
+                        Expired Medicines
+                    </span>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 Pharmacy Inventory System
+            | Keep Medicines Safe
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

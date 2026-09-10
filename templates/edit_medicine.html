@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Medicine - Pharmacy Inventory System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+.page-container{max-width:900px;margin:35px auto;padding:0 20px}
+.form-card{background:white;border-radius:18px;padding:40px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.form-title{text-align:center;font-size:32px;margin-bottom:10px;color:#1e293b}
+.form-subtitle{text-align:center;color:#64748b;margin-bottom:35px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.form-group{display:flex;flex-direction:column}
+.form-group.full-width{grid-column:1/-1}
+.form-group label{font-weight:600;margin-bottom:8px;color:#334155}
+.form-group input{padding:13px 15px;border:1px solid #cbd5e1;border-radius:8px;font-size:16px;outline:none}
+.form-group input:focus{border-color:#2684ed;box-shadow:0 0 0 3px rgba(38,132,237,.12)}
+.form-actions{display:flex;justify-content:center;gap:15px;margin-top:35px}
+.update-button{border:none;padding:14px 30px;border-radius:8px;background:linear-gradient(135deg,#2684ed,#1769d1);color:white;font-size:17px;font-weight:bold;cursor:pointer}
+.update-button:hover{background:#1769d1}
+.back-button{display:inline-flex;align-items:center;justify-content:center;padding:14px 30px;border-radius:8px;background:#64748b;color:white;text-decoration:none;font-size:17px;font-weight:bold}
+.back-button:hover{background:#475569;color:white}
+.required{color:#dc2626}
+@media(max-width:700px){.form-card{padding:25px}.form-grid{grid-template-columns:1fr}.form-group.full-width{grid-column:auto}.form-actions{flex-direction:column}.update-button,.back-button{width:100%}}
+</style>
+</head>
+<body>
+
+<header class="header">
+<div class="header-content">
+<div class="logo-icon">💊</div>
+<div>
+<h1>Pharmacy Inventory System</h1>
+<p>Manage medicines, stock and expiry dates</p>
+</div>
+</div>
+</header>
+
+<main class="page-container">
+<div class="form-card">
+<h2 class="form-title">Edit Medicine</h2>
+<p class="form-subtitle">Update the medicine information below.</p>
+
+<form method="POST">
+<div class="form-grid">
+
+<div class="form-group">
+<label for="name">Medicine Name <span class="required">*</span></label>
+<input type="text" id="name" name="name" value="{{ medicine['name'] }}" required>
+</div>
+
+<div class="form-group">
+<label for="category">Category <span class="required">*</span></label>
+<input type="text" id="category" name="category" value="{{ medicine['category'] }}" required>
+</div>
+
+<div class="form-group">
+<label for="manufacturer">Manufacturer</label>
+<input type="text" id="manufacturer" name="manufacturer" value="{{ medicine['manufacturer'] }}">
+</div>
+
+<div class="form-group">
+<label for="batch_number">Batch Number</label>
+<input type="text" id="batch_number" name="batch_number" value="{{ medicine['batch_number'] }}">
+</div>
+
+<div class="form-group">
+<label for="quantity">Quantity <span class="required">*</span></label>
+<input type="number" id="quantity" name="quantity" min="0" value="{{ medicine['quantity'] }}" required>
+</div>
+
+<div class="form-group">
+<label for="price">Price (₹) <span class="required">*</span></label>
+<input type="number" id="price" name="price" min="0" step="0.01" value="{{ medicine['price'] }}" required>
+</div>
+
+<div class="form-group full-width">
+<label for="expiry_date">Expiry Date <span class="required">*</span></label>
+<input type="date" id="expiry_date" name="expiry_date" value="{{ medicine['expiry_date'] }}" required>
+</div>
+
+</div>
+
+<div class="form-actions">
+<button type="submit" class="update-button">💾 Update Medicine</button>
+<a href="/medicines" class="back-button">← Back to Inventory</a>
+</div>
+</form>
+
+</div>
+</main>
+
+<footer class="footer">
+<p>© 2026 Pharmacy Inventory System | Keep Medicines Safe</p>
+</footer>
+
+</body>
+</html>
