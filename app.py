@@ -126,7 +126,6 @@ def expired_medicines():
     conn.close()
     return render_template("expired.html", medicines=medicines)
 
+create_database()
 if __name__ == "__main__":
-    create_database()
     app.run()
-    
